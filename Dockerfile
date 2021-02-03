@@ -1,4 +1,14 @@
-FROM openjdk:8-alpine:3.7.5
+FROM openjdk:8-jdk
+
+# This Dockerfile adds a non-root user with sudo access. Use the "remoteUser"
+# property in devcontainer.json to use it. On Linux, the container user's GID/UIDs
+# will be updated to match your local UID/GID (when using the dockerFile property).
+# See https://aka.ms/vscode-remote/containers/non-root-user for details.
+ARG USERNAME=vscode
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
+ARG DBCVER=3.3.7
+ARG TINI_VERSION=v0.19.0
 
 # Avoid interactive command line. Could be replaced with --yes flag.
 ENV DEBIAN_FRONTEND=noninteractive
@@ -24,18 +34,16 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
     echo "conda activate dbconnect" >> ~/.bashrc
 
 # Add Tini https://github.com/krallin/tini/
-ENV TINI_VERSION v0.19.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
 RUN chmod +x /tini
 ENTRYPOINT ["/usr/bin/tini", "--" ]
 # CMD  
 
-
-ENV DBCVER 7.3.7
 COPY environments/environment${DBCVER}.yml .
 RUN pip install --upgrade pip \
     && conda env create -f environment${DBCVER}.yml \
     && echo '{}' > /root/.databricks-connect
+
 
 # VSCode DevContainers
 RUN apt-get update \
@@ -50,6 +58,7 @@ RUN apt-get update \
     # Verify git, needed tools installed
     && apt-get -y install git iproute2 procps curl lsb-release
 
+
 # Clean up
 RUN apt-get autoremove -y \
     && apt-get clean -y \
@@ -58,4 +67,3 @@ ENV DEBIAN_FRONTEND=dialog
 
 # Allow for a consistant java home location for settings - image is changing over time
 RUN if [ ! -d "/docker-java-home" ]; then ln -s "${JAVA_HOME}" /docker-java-home; fi
-

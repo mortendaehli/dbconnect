@@ -5,8 +5,10 @@ Development container for databricks-connect (pyspark)
 - Docker and [WSL2](https://devblogs.microsoft.com/commandline/announcing-wsl-2/) if using windows
 - VS Code with [Remote Containers Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers). Other IDEs does provide similar capabilities, but are not documented here.
 
-# Get started
-1. set the environmental variables show in the sample.env file.
+# Get started (Windows 10 using Docker running on WSL2)
+1. set the environmental variables shown in the sample file (or handle environment variables however you want)
+2. Build the container using "docker build -t dbconnect ."
+3. Run remote interpreter container using "docker run --env-file=.env dbconnect" or however you want to pass 
 
 # Credits
 - Thanks to [Krallin](https://github.com/krallin/tini/) for the Tini init for containers.
