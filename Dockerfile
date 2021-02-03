@@ -7,7 +7,7 @@ FROM openjdk:8-jdk
 ARG USERNAME=vscode
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
-ARG DBCVER=3.3.7
+ARG DBCVER=7.3.7
 ARG TINI_VERSION=v0.19.0
 
 # Avoid interactive command line. Could be replaced with --yes flag.
@@ -36,7 +36,7 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
 # Add Tini https://github.com/krallin/tini/
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
 RUN chmod +x /tini
-ENTRYPOINT ["/usr/bin/tini", "--" ]
+ENTRYPOINT ["/tini", "--"]
 # CMD  
 
 COPY environments/environment${DBCVER}.yml .

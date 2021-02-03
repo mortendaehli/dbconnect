@@ -1,6 +1,6 @@
 {
     "context": "..",
-    "image": "datathirstltd/dbconnect:7.1.0",
+    "image": "dbconnect",
 
     "settings": {
         "python.pythonPath": "/opt/conda/envs/dbconnect/bin/python",
@@ -8,11 +8,11 @@
     },
 
     "containerEnv": {
-        "DATABRICKS_ADDRESS": ${env:DATABRICKS_ADDRESS},
-        "DATABRICKS_API_TOKEN": ${env:DATABRICKS_API_TOKEN},
-        "DATABRICKS_CLUSTER_ID": ${env:DATABRICKS_CLUSTER_ID},
-        "DATABRICKS_ORG_ID": ${env:DATABRICKS_ORG_ID},
-        "DATABRICKS_PORT": ${env:DATABRICKS_PORT}"
+        "DATABRICKS_ADDRESS": "${env:DATABRICKS_ADDRESS}",
+        "DATABRICKS_API_TOKEN": "${env:DATABRICKS_API_TOKEN}",
+        "DATABRICKS_CLUSTER_ID": "${env:DATABRICKS_CLUSTER_ID}",
+        "DATABRICKS_ORG_ID": "${env:DATABRICKS_ORG_ID}",
+        "DATABRICKS_PORT": "${env:DATABRICKS_PORT}"
     },
     "extensions": [
         "ms-python.python"
