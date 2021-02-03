@@ -8,7 +8,7 @@ Development container for databricks-connect (pyspark)
 # Get started (Windows 10 using Docker running on WSL2)
 1. set the environmental variables shown in the sample file (or handle environment variables however you want)
 2. Build the container using "docker build -t dbconnect ."
-3. Run remote interpreter container using "docker run --env-file=.env dbconnect" or however you want to pass 
+3. ... work in progress... stay tuned
 
 # Credits
 - Thanks to [Krallin](https://github.com/krallin/tini/) for the Tini init for containers.
