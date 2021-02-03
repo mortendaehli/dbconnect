@@ -6,7 +6,7 @@ Development container for databricks-connect (pyspark)
 - VS Code with [Remote Containers Extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers). Other IDEs does provide similar capabilities, but are not documented here.
 
 # Get started
-1. 
+1. set the environmental variables show in the sample.env file.
 
 # Credits
 - Thanks to [Krallin](https://github.com/krallin/tini/) for the Tini init for containers.

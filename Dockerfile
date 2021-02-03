@@ -1,4 +1,4 @@
-FROM openjdk:8-alpine
+FROM openjdk:8-alpine:3.7.5
 
 # Avoid interactive command line. Could be replaced with --yes flag.
 ENV DEBIAN_FRONTEND=noninteractive
@@ -22,7 +22,6 @@ RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
     ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
     echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
     echo "conda activate dbconnect" >> ~/.bashrc
-
 
 # Add Tini https://github.com/krallin/tini/
 ENV TINI_VERSION v0.19.0
